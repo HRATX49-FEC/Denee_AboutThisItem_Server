@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Axios from 'axios';
-import Cats from './components/Cats.js';
+import TabBar from './components/TabBar.js';
+// import Cats from './components/Cats.js';
 
 
 class App extends React.Component {
@@ -45,18 +46,13 @@ class App extends React.Component {
   render() {
 
     return (
-      <div>
-        <h1>Purrget</h1>
-        <h3>Cats</h3>
-        {this.state.cats.map(cat => {
-          // console.log('cat map', cat);
-          return (
-            <Cats key={cat.ID} cat={cat} />
-          )
-        })}
-
+      <div class="mainBox">
+        <h2 class="heading">About this item</h2>
+        <div>
+          <TabBar />
+        </div>
       </div>
-    );
+    )
   }
 
 
