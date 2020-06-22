@@ -9,8 +9,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
 
-app.get('/purrget', (req, res) => {
-  db.getCats((error, results) => {
+app.get('/about', (req, res) => {
+  // console.log('get', req.query.catName)
+  db.getCats(req.query.catName, (error, results) => {
     if (error) {
       console.error('error getting query', error);
       res.send(error, null);

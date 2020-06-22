@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Axios from 'axios';
-import TabBar from './components/TabBar.js';
+import AboutItem from './components/AboutItem.js';
 // import Cats from './components/Cats.js';
 
 
@@ -9,21 +9,20 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cats: []
+      cat: []
     };
-    this.getCats = this.getCats.bind(this);
+    this.getCat = this.getCat.bind(this);
   }
 
   componentDidMount() {
-    this.getCats();
+    this.getCat('Luna');
   }
 
 
-  getCats() {
-    Axios.get('/purrget')
+  getCat(catName) {
+    Axios.get('/about', {params: {catName}})
       .then((response) => {
-        // console.log('Axios get response', response.data);
-        this.setState({cats: response.data});
+        this.setState({cat: response.data[0]});
 
       })
       .catch(error => {
@@ -46,10 +45,10 @@ class App extends React.Component {
   render() {
 
     return (
-      <div class="mainBox">
-        <h2 class="heading">About this item</h2>
+      <div className="mainBox">
+        <h2 className="heading">About this item</h2>
         <div>
-          <TabBar />
+          <AboutItem cat={this.state.cat} />
         </div>
       </div>
     )
@@ -61,4 +60,4 @@ class App extends React.Component {
 
 
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('about'));

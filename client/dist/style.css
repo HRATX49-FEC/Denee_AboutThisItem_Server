@@ -3,8 +3,12 @@
   color: rgb(51, 51, 51);
   max-width: 100%;
   padding-top: 16px !important;
+  padding-bottom: 16px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 
 }
+
 
 .heading {
   font-family: Helvetica, Arial, sans-serif;
@@ -25,27 +29,26 @@
 
 .tabBar {
   width: 100%;
+  text-align: center;
   border-bottom: 1px solid rgb(136, 136, 136);
   line-height: 1.4285;
-  border-spacing: 40px;
-  display: block;
+  border-spacing: 0px;
+  box-sizing: border-box;
+
 }
 
 
 .tabList {
-  align-items: center;
   border-spacing: 20px 0px;
-  box-sizing: border-box;
   padding: 4px 1px 0px;
-  margin: 0px auto;
-  list-style: outside none none;
-  margin-left: 225px;
-  margin-right: 225px;
+  margin: 0px;
+  text-align: center;
+  display: inline-block;
 }
 
 
 .tabHeader {
-  box-sizing: border-box;
+  display: inline-block;
   font-family: Helvetica, Arial, sans-serif;
   line-height: 1.4285;
   font-size: 16px;
@@ -59,5 +62,132 @@
   margin: 0px;
   padding: 8px 12px;
   cursor: pointer;
+  text-decoration: underline;
+}
 
+
+.linkTabHeader {
+  border-bottom: 5 px solid red;
+}
+
+.innerMargins {
+  margin-top: 35px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.innerBox {
+  background-color: white;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+}
+
+.highlightsHeader {
+  color: rgb(51, 51, 51);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.highlightsList {
+  background-color: white;
+  color: rgb(51, 51, 51);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  margin: 0;
+  padding: 10px;
+
+  list-style-type: disc;
+}
+
+.highlightsListItem {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  display: block;
+  flex: 0 1 auto;
+  list-style-type: disc;
+
+}
+
+.specifications {
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.specFlex {
+  display: flex;
+  background-color: white;
+  color: rgb(51, 51, 51);
+  /* flex-wrap: wrap; */
+  align-items: stretch;
+  justify-content: space-around;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px
+}
+
+.spec {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: initial;
+  flex-basis: 50%;
+  max-width: 50%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.specDetail {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4285;
+  list-style-type: none;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid lightgray;
+}
+
+.specRes {
+  font-weight: normal;
+}
+
+.descript {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: initial;
+  flex-basis: 50%;
+  max-width: 50%;
+  padding-left: 16px;
+}
+
+.descriptDetail {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  flex-wrap: wrap;
+  padding-top: 16px;
+}
+
+.showMore {
+  background-color: white;
+
+}
+
+.shippingHeader {
+  color: rgb(51, 51, 51);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.shippingDetails {
+  font-weight: normal;
+  font-size: 14px;
 }
