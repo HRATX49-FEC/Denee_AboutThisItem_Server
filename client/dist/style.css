@@ -65,9 +65,14 @@
   text-decoration: underline;
 }
 
+.tabHeader:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 
 .linkTabHeader {
-  border-bottom: 5 px solid red;
+  border-bottom: 3 px solid red;
 }
 
 .innerMargins {
