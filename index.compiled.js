@@ -4,7 +4,7 @@ var express = require('express');
 
 var bodyParser = require('body-parser');
 
-var db = require('../database');
+var db = require('./database/query.js');
 
 var app = express();
 var PORT = process.env.PORT || 5100;
