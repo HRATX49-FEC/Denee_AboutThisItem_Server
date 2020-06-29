@@ -1,28 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Axios from 'axios';
-import Cats from './components/Cats.js';
+import $ from 'jquery';
+import AboutItem from './components/AboutItem.js';
 
 
-class App extends React.Component {
+
+class About extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cats: []
+      cat: [],
+      tabSelected: 'Details'
     };
-    this.getCats = this.getCats.bind(this);
+    this.getCat = this.getCat.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    this.getCats();
+    this.getCat('Luna');
   }
 
 
-  getCats() {
-    Axios.get('/purrget')
+  getCat(catName) {
+    Axios.get('/about', {params: {catName}})
       .then((response) => {
-        // console.log('Axios get response', response.data);
-        this.setState({cats: response.data});
+        this.setState({cat: response.data[0]});
 
       })
       .catch(error => {
@@ -32,7 +35,7 @@ class App extends React.Component {
 
 
   add(input) {
-    Axios.post('/', {input})
+    Axios.post('/about', {input})
       .then(res => {
 
       })
@@ -41,22 +44,27 @@ class App extends React.Component {
       });
   }
 
+  handleChange(event) {
+    this.setState({
+      tabSelected: event.target.name
+    })
+
+  }
 
   render() {
 
     return (
-      <div>
-        <h1>Purrget</h1>
-        <h3>Cats</h3>
-        {this.state.cats.map(cat => {
-          // console.log('cat map', cat);
-          return (
-            <Cats key={cat.ID} cat={cat} />
-          )
-        })}
-
+      <div className="mainBox">
+        <h2 className="heading">About this item</h2>
+        <div>
+          <AboutItem
+          cat={this.state.cat}
+          tabSelected={this.state.tabSelected}
+          handleChange={this.handleChange}
+          />
+        </div>
       </div>
-    );
+    )
   }
 
 
@@ -65,4 +73,4 @@ class App extends React.Component {
 
 
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<About />, document.getElementById('about'));
