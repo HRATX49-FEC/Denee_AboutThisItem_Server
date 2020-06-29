@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Axios from 'axios';
+import $ from 'jquery';
 import AboutItem from './components/AboutItem.js';
-// import Cats from './components/Cats.js';
 
 
-class App extends React.Component {
+
+class About extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cat: []
+      cat: [],
+      tabSelected: 'Details'
     };
     this.getCat = this.getCat.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +35,7 @@ class App extends React.Component {
 
 
   add(input) {
-    Axios.post('/', {input})
+    Axios.post('/about', {input})
       .then(res => {
 
       })
@@ -41,6 +44,12 @@ class App extends React.Component {
       });
   }
 
+  handleChange(event) {
+    this.setState({
+      tabSelected: event.target.name
+    })
+
+  }
 
   render() {
 
@@ -48,7 +57,11 @@ class App extends React.Component {
       <div className="mainBox">
         <h2 className="heading">About this item</h2>
         <div>
-          <AboutItem cat={this.state.cat} />
+          <AboutItem
+          cat={this.state.cat}
+          tabSelected={this.state.tabSelected}
+          handleChange={this.handleChange}
+          />
         </div>
       </div>
     )
@@ -60,4 +73,4 @@ class App extends React.Component {
 
 
 
-ReactDOM.render(<App />, document.getElementById('about'));
+ReactDOM.render(<About />, document.getElementById('about'));

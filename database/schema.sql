@@ -5,13 +5,13 @@ CREATE DATABASE purrget;
 USE purrget;
 
 CREATE TABLE categories (
-  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  ID INT AUTO_INCREMENT PRIMARY KEY,
   category VARCHAR(255) NOT NULL
 );
 
 
 CREATE TABLE specifications (
-  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  ID INT AUTO_INCREMENT PRIMARY KEY,
   size VARCHAR(255),
   mouseCount INT,
   dogFriend VARCHAR(255),
@@ -19,27 +19,30 @@ CREATE TABLE specifications (
   itemNum INT NOT NULL
 );
 
-
-
-
 CREATE TABLE cats (
-  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  catName VARCHAR(255) NOT NULL,
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  catName VARCHAR(255) NOT NULL UNIQUE,
   age INT NOT NULL,
   livesLeft INT NOT NULL,
   sex VARCHAR(255),
   specs INT NOT NULL,
-  INDEX spec (specs),
-    FOREIGN KEY (specs)
-    REFERENCES specifications(ID)
-    ON DELETE CASCADE,
   categoryID INT NOT NULL,
-  INDEX categ_ind (categoryID),
+
+  FOREIGN KEY (specs)
+    REFERENCES specifications(ID),
   FOREIGN KEY (categoryID)
     REFERENCES categories(ID)
-    ON DELETE CASCADE,
-  UNIQUE KEY (catName)
 );
+
+CREATE TABLE questions (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  catID INT NOT NULL,
+  question VARCHAR(255),
+  answer VARCHAR(255),
+  FOREIGN KEY (catID)
+	  REFERENCES cats(ID)
+);
+
 
 INSERT INTO categories (category) VALUES ('Floof');
 INSERT INTO categories (category) VALUES ('Chonk');
@@ -47,6 +50,108 @@ INSERT INTO categories (category) VALUES ('Hairless');
 INSERT INTO categories (category) VALUES ('Adorable');
 
 
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Small', 11, 'Yes', 'Indoor/Outdoor', 74829);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Small', 3, 'Yes', 'Indoor', 28465);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 1, 'No', 'Outdoor', 57842);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Large', 0, 'Yes', 'Indoor/Outdoor', 13758);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 23, 'Yes', 'Outdoor', 28347);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 4, 'No', 'Indoor', 75832);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Small', 0, 'No', 'Indoor', 49563);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 6, 'Yes', 'Indoor/Outdoor', 58739);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 6, 'Yes', 'Indoor', 39275);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Large', 2, 'Yes', 'Indoor', 78493);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Small', 2, 'Yes', 'Indoor/Outdoor', 93847);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 38, 'No', 'Indoor/Outdoor', 29384);
+
+
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
+INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
 
 
 INSERT INTO cats (catName, age, livesLeft, sex, specs, categoryID) VALUES ('Gizmo', 4, 5, 'Male', 1, 4);
@@ -157,110 +262,3 @@ INSERT INTO cats (catName, age, livesLeft, sex, specs, categoryID) VALUES ('Rust
 INSERT INTO cats (catName, age, livesLeft, sex, specs, categoryID) VALUES ('Batman', 5, 5, 'Male', 98, 3);
 INSERT INTO cats (catName, age, livesLeft, sex, specs, categoryID) VALUES ('Gatsby', 5, 5, 'Male', 99, 3);
 INSERT INTO cats (catName, age, livesLeft, sex, specs, categoryID) VALUES ('Raven', 5, 5, 'Male', 100, 3);
-
-
-
-
-
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Small', 11, 'Yes', 'Indoor/Outdoor', 74829);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Small', 3, 'Yes', 'Indoor', 28465);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 1, 'No', 'Outdoor', 57842);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Large', 0, 'Yes', 'Indoor/Outdoor', 13758);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 23, 'Yes', 'Outdoor', 28347);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 4, 'No', 'Indoor', 75832);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Small', 0, 'No', 'Indoor', 49563);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 6, 'Yes', 'Indoor/Outdoor', 58739);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 6, 'Yes', 'Indoor', 39275);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Large', 2, 'Yes', 'Indoor', 78493);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Small', 2, 'Yes', 'Indoor/Outdoor', 93847);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 38, 'No', 'Indoor/Outdoor', 29384);
-
-
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);
-INSERT INTO specifications (size, mouseCount, dogFriend, in_out, itemNum) VALUES ('Medium', 0, 'Yes', 'Outdoor', 55);

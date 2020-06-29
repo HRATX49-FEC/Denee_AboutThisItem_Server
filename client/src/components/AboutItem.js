@@ -1,31 +1,29 @@
 import React from 'react';
-import Details from './Details.js';
-import Specifications from './Specifications.js';
+import CurrentTab from './CurrentTab.js';
 
 const AboutItem = (props) => {
   return (
     <div>
       <div className="tabBar">
         <ul className="tabList">
-          <li className="tabHeader">
-            <a className="linkTabHeader">
-              <div>Details</div>
-            </a>
+          <li
+            className={props.tabSelected === 'Details' ? "tabHeaderSelected" : "tabHeader"}
+            onClick={(event) => props.handleChange(event)}>
+            <a name='Details' className="tabHeader">Details</a>
           </li>
-          <li className="tabHeader">
-            <a className="linkTabHeader">
-              <div>Shipping & Returns</div>
-            </a>
+          <li
+            className={props.tabSelected === 'Shipping' ? "tabHeaderSelected" : "tabHeader"}
+            onClick={(event) => props.handleChange(event)}>
+            <a name='Shipping' className="tabHeader">Shipping & Returns</a>
           </li>
-          <li className="tabHeader">
-            <a className="linkTabHeader">
-              <div>Q&A</div>
-            </a>
+          <li
+            className={props.tabSelected === 'QA' ? "tabHeaderSelected" : "tabHeader"}
+            onClick={(event) => props.handleChange(event)}>
+            <a name='QA' className="tabHeader">Q&A</a>
           </li>
         </ul>
       </div>
-      <Details cat={props.cat}/>
-      <Specifications cat={props.cat}/>
+        <CurrentTab current={props.tabSelected} cat={props.cat} />
     </div>
   )
 
