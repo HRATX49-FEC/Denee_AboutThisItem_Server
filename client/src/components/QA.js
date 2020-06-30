@@ -3,7 +3,7 @@ import React from 'react';
 const QA = (props) => {
   return (
     <div>
-      QA
+      <button className="questionButton">Ask a question</button>
     </div>
   )
 }

@@ -19,6 +19,9 @@ class About extends React.Component {
 
   componentDidMount() {
     this.getCat('Luna');
+    $('body').on('click', '.catLink', (e) => {
+      this.getCat(e.currentTarget.id);
+    });
   }
 
 
