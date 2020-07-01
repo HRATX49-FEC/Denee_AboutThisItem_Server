@@ -11,6 +11,7 @@ class AskQuestion extends React.Component {
     this.handleChangeQues = this.handleChangeQues.bind(this);
     this.handleChangeUser = this.handleChangeUser.bind(this);
     this.newQuestion = this.newQuestion.bind(this);
+    console.log('props', props)
   }
 
   handleChangeQues(event) {
@@ -23,7 +24,8 @@ class AskQuestion extends React.Component {
   }
 
   newQuestion() {
-    this.props.addQuestion([this.state.catID, this.state.question, this.state.qUser])
+    this.props.addQuestion([this.state.catID, this.state.question, this.state.qUser]);
+    this.props.toggleAskQuestion();
   }
 
   render() {

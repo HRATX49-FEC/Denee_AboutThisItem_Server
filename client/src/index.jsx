@@ -62,7 +62,8 @@ class About extends React.Component {
   getQuestions(catName) {
     Axios.get('/about/questions', {params: {catName}})
       .then((response) => {
-      console.log('questions', response.data);
+      // console.log('questions', response.data);
+        window.questions = response.data.length;
         this.setState({questions: response.data});
       })
       .catch(error => {
@@ -96,11 +97,12 @@ class About extends React.Component {
   }
 
   addQuestion(question) {
+    console.log('axios post question', question)
     Axios.post('/about/question', {question})
       .then(res => {
         console.log(res);
       })
-      .then(this.getQuestions(this.state.cat.catName))
+      // .then(this.getQuestions(this.state.cat.catName))
       .catch(error => {
         console.error('Axios post error', error);
       });

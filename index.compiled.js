@@ -50,7 +50,8 @@ app.get('/about/questions', function (req, res) {
 // });
 
 app.post('/about/question', function (req, res) {
-  db.addQuestion(question, function (error, results) {
+  // console.log(req.body.question)
+  db.addQuestion(req.body.question, function (error, results) {
     if (error) {
       res.send(error, null);
     } else {
