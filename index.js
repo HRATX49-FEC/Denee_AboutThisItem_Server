@@ -49,7 +49,8 @@ app.get('/about/questions', (req, res) => {
 // });
 
 app.post('/about/question', (req, res) => {
-  db.addQuestion(question, (error, results) => {
+  // console.log(req.body.question)
+  db.addQuestion(req.body.question, (error, results) => {
     if (error) {
       res.send(error, null);
     } else {
@@ -67,8 +68,6 @@ app.post('/about/answer', (req, res) => {
     }
   });
 });
-
-
 
 
 app.listen(PORT, () => {

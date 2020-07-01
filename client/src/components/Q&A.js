@@ -2,7 +2,7 @@ import React from 'react';
 import Question from './Question.js';
 import AskQuestion from './AskQuestion.js';
 
-const QA = ({catID, questions, askQuestion, toggleAskQuestion, answerIt, toggleAnswerIt}) => {
+const QA = ({catID, questions, addQuestion, askQuestion, toggleAskQuestion, addAnswer, answerIt, toggleAnswerIt}) => {
   if (questions.length > 0) {
     return (
       <div className="innerMargins">
@@ -12,6 +12,7 @@ const QA = ({catID, questions, askQuestion, toggleAskQuestion, answerIt, toggleA
             key={question.qID}
             catID={catID}
             question={question}
+            addAnswer={addAnswer}
             answerIt={answerIt}
             toggleAnswerIt={toggleAnswerIt}/>
           )
@@ -20,6 +21,7 @@ const QA = ({catID, questions, askQuestion, toggleAskQuestion, answerIt, toggleA
           <button className="largeWhiteButton">See all questions ({questions.length})</button>
           <AskQuestion
           catID={catID}
+          addQuestion={addQuestion}
           askQuestion={askQuestion}
           toggleAskQuestion={toggleAskQuestion}/>
         </div>

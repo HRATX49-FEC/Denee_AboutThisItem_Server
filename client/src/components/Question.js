@@ -1,7 +1,7 @@
 import React from 'react';
 import Answer from './Answer.js';
 
-const Question = ({catID, question, answerIt, toggleAnswerIt}) => {
+const Question = ({catID, question, addAnswer, answerIt, toggleAnswerIt}) => {
   return (
     <div className="questionsBox">
       <div className="question">Q: {question.question}</div>
@@ -20,6 +20,7 @@ const Question = ({catID, question, answerIt, toggleAnswerIt}) => {
         <div className="answerIt">
           <Answer
           catID={catID}
+          addAnswer={addAnswer}
           answerIt={answerIt}
           toggleAnswerIt={toggleAnswerIt}/>
         </div>

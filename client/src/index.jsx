@@ -14,7 +14,7 @@ class About extends React.Component {
       questions: [],
       answers: [],
       tabSelected: 'Details',
-      askQuestion: false,
+      askQuestion: true,
       answerIt: false
     };
     this.getCat = this.getCat.bind(this);
@@ -34,7 +34,18 @@ class About extends React.Component {
     // this.getAnswers('Luna');
     $('body').on('click', '.catLink', (e) => {
       this.getCat(e.currentTarget.id);
+      this.getQuestions(e.currentTarget.id);
     });
+    $('body').on('submit', '.form', (e) => {
+      // console.log(e.target[0].value);
+      let formatted = e.target[0].value.replace(/(^\w|\s\w)(\S*)/g, (_,m1,m2) => m1.toUpperCase()+m2.toLowerCase());
+      this.getCat(formatted);
+      this.getQuestions(formatted);
+    });
+    $('body').on('click', '.catRows', (e) => {
+      this.getCat(e.currentTarget.value);
+      this.getQuestions(e.currentTarget.value);
+    })
   }
 
 
@@ -42,7 +53,6 @@ class About extends React.Component {
     Axios.get('/about/cat', {params: {catName}})
       .then((response) => {
         this.setState({cat: response.data[0]});
-
       })
       .catch(error => {
         console.error('Axios get Cat error', error);
@@ -85,11 +95,12 @@ class About extends React.Component {
     this.setState({answerIt: !this.state.answerIt})
   }
 
-  addQuestion(input) {
+  addQuestion(question) {
     Axios.post('/about/question', {question})
       .then(res => {
-        this.getQuestions();
+        console.log(res);
       })
+      .then(this.getQuestions(this.state.cat.catName))
       .catch(error => {
         console.error('Axios post error', error);
       });
@@ -98,7 +109,7 @@ class About extends React.Component {
   addAnswer(input) {
     Axios.post('/about/answer', {answer})
       .then(res => {
-        this.getQuestions();
+        console.log(res);
       })
       .catch(error => {
         console.error('Axios post error', error);
@@ -115,8 +126,10 @@ class About extends React.Component {
           tabSelected={this.state.tabSelected}
           toggleTabSelected={this.toggleTabSelected}
           questions={this.state.questions}
+          addQuestion={this.addQuestion}
           askQuestion={this.state.askQuestion}
           toggleAskQuestion={this.toggleAskQuestion}
+          addAnswer={this.addAnswer}
           answerIt={this.state.answerIt}
           toggleAnswerIt={this.toggleAnswerIt}
           />
@@ -124,9 +137,6 @@ class About extends React.Component {
       </div>
     )
   }
-
-
-
 }
 
 

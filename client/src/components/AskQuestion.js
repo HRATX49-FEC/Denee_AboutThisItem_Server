@@ -9,11 +9,21 @@ class AskQuestion extends React.Component {
       catID: this.props.catID
     };
     this.handleChangeQues = this.handleChangeQues.bind(this);
-
+    this.handleChangeUser = this.handleChangeUser.bind(this);
+    this.newQuestion = this.newQuestion.bind(this);
   }
 
   handleChangeQues(event) {
+    console.log(event.target.value);
     this.setState({question: event.target.value})
+  }
+
+  handleChangeUser(event) {
+    this.setState({qUser: event.target.value})
+  }
+
+  newQuestion() {
+    this.props.addQuestion([this.state.catID, this.state.question, this.state.qUser])
   }
 
   render() {
@@ -26,6 +36,7 @@ class AskQuestion extends React.Component {
               maxLength='255'
               rows='4'
               placeholder="question"
+              onChange={this.handleChangeQues}
               className="quesTextBox">
             </textarea>
             <div className="smallGrayText">at least 20 characters</div>
@@ -34,14 +45,14 @@ class AskQuestion extends React.Component {
               maxLength='20'
               rows='1'
               placeholder='screen name'
-              onChange={this.handleChangeQues}
+              onChange={this.handleChangeUser}
               className="quesTextBox">
             </textarea>
             <div className="smallGrayText">this name will be displayed with your question</div>
           </div>
           <div className="submitQuesBox">by submitting I agree to the <a href="#">q&a guildelines</a>
-            <button className="largeWhiteButton">cancel</button>
-            <button className="largeRedButton">submit question</button>
+            <button className="largeWhiteButton" onClick={this.props.toggleAskQuestion}>cancel</button>
+            <button className="largeRedButton" onClick={this.newQuestion}>submit question</button>
           </div>
         </>
       )

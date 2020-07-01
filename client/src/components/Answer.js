@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Answer = ({answerIt, toggleAnswerIt}) => {
+const Answer = ({addAnswer, answerIt, toggleAnswerIt}) => {
   if (answerIt) {
     return (
       <>

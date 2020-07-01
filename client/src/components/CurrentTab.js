@@ -3,7 +3,7 @@ import Details from './Details.js';
 import Shipping from './Shipping.js';
 import QA from './Q&A.js';
 
-const CurrentTab = ({tabSelected, cat, questions, askQuestion, toggleAskQuestion, answerIt, toggleAnswerIt}) => {
+const CurrentTab = ({tabSelected, cat, questions, addQuestion, askQuestion, toggleAskQuestion, addAnswer, answerIt, toggleAnswerIt}) => {
   if (tabSelected === 'Details') {
     return (
       <Details cat={cat} />
@@ -19,8 +19,10 @@ const CurrentTab = ({tabSelected, cat, questions, askQuestion, toggleAskQuestion
       <QA
       catID={cat.cID}
       questions={questions}
+      addQuestion={addQuestion}
       askQuestion={askQuestion}
       toggleAskQuestion={toggleAskQuestion}
+      addAnswer={addAnswer}
       answerIt={answerIt}
       toggleAnswerIt={toggleAnswerIt}/>
     )
