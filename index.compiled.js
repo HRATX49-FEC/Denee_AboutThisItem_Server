@@ -13,7 +13,7 @@ app.use(express.urlencoded({
   extended: true
 }));
 app.use(express["static"](path.join(__dirname, 'client', 'dist')));
-app.get('/about', function (req, res) {
+app.get('/about/cat', function (req, res) {
   // console.log('get', req.query.catName)
   db.getCats(req.query.catName, function (error, results) {
     if (error) {
@@ -21,6 +21,18 @@ app.get('/about', function (req, res) {
       res.send(error, null);
     } else {
       // console.log('query results:', results);
+      res.status(200).send(results);
+    }
+  });
+});
+app.get('/about/questions', function (req, res) {
+  // console.log('get', req.query.catName)
+  db.getQAs(req.query.catName, function (error, results) {
+    if (error) {
+      console.error('error getting query', error);
+      res.send(error, null);
+    } else {
+      console.log('query results:', results);
       res.status(200).send(results);
     }
   });

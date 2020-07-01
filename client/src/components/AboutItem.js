@@ -19,11 +19,14 @@ const AboutItem = (props) => {
           <li
             className={props.tabSelected === 'QA' ? "tabHeaderSelected" : "tabHeader"}
             onClick={(event) => props.handleChange(event)}>
-            <a name='QA' className="tabHeader">Q&A</a>
+            <a name='QA' className="tabHeader">Q&A{`(${props.questions.length})`}</a>
           </li>
         </ul>
       </div>
-        <CurrentTab current={props.tabSelected} cat={props.cat} />
+        <CurrentTab
+        current={props.tabSelected}
+        cat={props.cat}
+        questions={props.questions}/>
     </div>
   )
 

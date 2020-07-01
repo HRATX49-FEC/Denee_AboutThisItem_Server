@@ -1,7 +1,7 @@
 import React from 'react';
 import Details from './Details.js';
 import Shipping from './Shipping.js';
-import QA from './QA.js';
+import QA from './Q&A.js';
 
 const CurrentTab = (props) => {
   if (props.current === 'Details') {
@@ -16,7 +16,7 @@ const CurrentTab = (props) => {
   }
   if (props.current === 'QA') {
     return (
-      <QA cat={props.cat} />
+      <QA questions={props.questions} />
     )
   }
 

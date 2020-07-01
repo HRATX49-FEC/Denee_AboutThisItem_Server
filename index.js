@@ -9,7 +9,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
 
-app.get('/about', (req, res) => {
+app.get('/about/cat', (req, res) => {
   // console.log('get', req.query.catName)
   db.getCats(req.query.catName, (error, results) => {
     if (error) {
@@ -21,6 +21,34 @@ app.get('/about', (req, res) => {
     }
   });
 });
+
+app.get('/about/questions', (req, res) => {
+  // console.log('get', req.query.catName)
+  db.getQuestions(req.query.catName, (error, results) => {
+    if (error) {
+      console.error('error getting query', error);
+      res.send(error, null);
+    } else {
+      // console.log('query results:', results);
+      res.status(200).send(results);
+    }
+  });
+});
+
+app.get('/about/answers', (req, res) => {
+  // console.log('get', req.query.catName)
+  db.getAnswers(req.query.catName, (error, results) => {
+    if (error) {
+      console.error('error getting query', error);
+      res.send(error, null);
+    } else {
+      // console.log('query results:', results);
+      res.status(200).send(results);
+    }
+  });
+});
+
+
 
 
 app.listen(PORT, () => {
