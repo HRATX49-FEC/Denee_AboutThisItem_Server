@@ -1,15 +1,15 @@
 import React from 'react';
 
-const Answer = ({answerIt, toggleAnswerIt}) => {
-  if (answerIt) {
+const AskQuestion = ({askQuestion, toggleAskQuestion}) => {
+  if (askQuestion) {
     return (
       <>
-        <div className="askQuesForm">your answer
+        <div className="askQuesForm">Your question
           <textarea
             type="text"
             maxLength='255'
             rows='4'
-            placeholder="answer"
+            placeholder="question"
             className="quesTextBox">
           </textarea>
           <div className="smallGrayText">at least 20 characters</div>
@@ -24,17 +24,17 @@ const Answer = ({answerIt, toggleAnswerIt}) => {
         </div>
         <div className="submitQuesBox">by submitting I agree to the <a href="#">q&a guildelines</a>
           <button className="largeWhiteButton">cancel</button>
-          <button className="largeRedButton">submit answer</button>
+          <button className="largeRedButton">submit question</button>
         </div>
-      </>
+       </>
     )
   } else {
     return (
-      <button className="answerItButton" onClick={console.log('answer click')}>Answer it</button>
+      <button className="largeRedButton">Ask a question</button>
     )
-
   }
-
 }
 
-export default Answer;
+export default AskQuestion;
+
+

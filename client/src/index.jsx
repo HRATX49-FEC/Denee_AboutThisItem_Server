@@ -13,12 +13,16 @@ class About extends React.Component {
       cat: [],
       questions: [],
       answers: [],
-      tabSelected: 'Details'
+      tabSelected: 'Details',
+      askQuestion: false,
+      answerIt: false
     };
     this.getCat = this.getCat.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
     // this.getAnswers = this.getAnswers.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.toggleTabSelected = this.toggleTabSelected.bind(this);
+    this.toggleAskQuestion = this.toggleAskQuestion(this);
+    this.toggleAnswerIt = this.toggleAnswerIt(this);
   }
 
   componentDidMount() {
@@ -64,6 +68,19 @@ class About extends React.Component {
   //     })
   // }
 
+  toggleAskQuestion() {
+    this.setState({askQuestion: !this.state.askQuestion})
+  }
+
+  toggleTabSelected(event) {
+    this.setState({
+      tabSelected: event.target.name
+    })
+  }
+
+  toggleAnswerIt() {
+    this.setState({answerIt: !this.state.answerIt})
+  }
 
   add(input) {
     Axios.post('/about', {input})
@@ -75,13 +92,6 @@ class About extends React.Component {
       });
   }
 
-  handleChange(event) {
-    this.setState({
-      tabSelected: event.target.name
-    })
-
-  }
-
   render() {
 
     return (
@@ -91,8 +101,12 @@ class About extends React.Component {
           <AboutItem
           cat={this.state.cat}
           tabSelected={this.state.tabSelected}
-          handleChange={this.handleChange}
+          toggleTabSelected={this.toggleTabSelected}
           questions={this.state.questions}
+          askQuestion={this.state.askQuestion}
+          toggleAskQuestion={this.toggleAskQuestion}
+          answerIt={this.state.answerIt}
+          toggleAnswerIt={this.toggleAnswerIt}
           />
         </div>
       </div>

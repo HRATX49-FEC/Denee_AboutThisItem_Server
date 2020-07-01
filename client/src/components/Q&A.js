@@ -1,19 +1,25 @@
 import React from 'react';
 import Question from './Question.js';
+import AskQuestion from './AskQuestion.js';
 
-const QA = (props) => {
-  if (props.questions.length > 0) {
+const QA = ({questions, askQuestion, toggleAskQuestion, answerIt, toggleAnswerIt}) => {
+  if (questions.length > 0) {
     return (
       <div className="innerMargins">
-        {props.questions.map(question => {
+        {questions.map(question => {
           return (
             <Question
             key={question.qID}
-            question={question}/>
+            question={question}
+            answerIt={answerIt}
+            toggleAnswerIt={toggleAnswerIt}/>
           )
         })}
         <div className="askQBox">
-          <button className="questionButton">Ask a question</button>
+          <button className="largeWhiteButton">See all questions ({questions.length})</button>
+          <AskQuestion
+          askQuestion={askQuestion}
+          toggleAskQuestion={toggleAskQuestion}/>
         </div>
       </div>
     )
@@ -21,7 +27,7 @@ const QA = (props) => {
   return (
     <div className="innerMargins">
       <div className="askQBox">
-        <button className="questionButton">Ask a question</button>
+        <button className="largeRedButton">Ask a question</button>
       </div>
     </div>
   )
@@ -33,12 +39,12 @@ export default QA;
 
 /*
   var QAs = [];
-  for (var i = 0; i < props.questions.length; i++) {
-    for (var j = 0; j < props.answers.length; j++) {
-      QAs.push([{'question': props.questions[i]['question'], 'qUser': props.questions[i]['qUser'], 'qID': props.questions[i]['qID']}])
-      if (props.answers[j]['qID'] === props.questions[i]['qID']) {
-        console.log('test', props.answers[j]['qID'])
-        QAs[i].push({'aID': props.answers[j]['aID'], 'answer': props.answers[j]['answer'], 'aUser': props.answers[j]['aUser']})
+  for (var i = 0; i < questions.length; i++) {
+    for (var j = 0; j < answers.length; j++) {
+      QAs.push([{'question': questions[i]['question'], 'qUser': questions[i]['qUser'], 'qID': questions[i]['qID']}])
+      if (answers[j]['qID'] === questions[i]['qID']) {
+        console.log('test', answers[j]['qID'])
+        QAs[i].push({'aID': answers[j]['aID'], 'answer': answers[j]['answer'], 'aUser': answers[j]['aUser']})
       }
     }
   };

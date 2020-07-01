@@ -1,22 +1,26 @@
 import React from 'react';
 import Answer from './Answer.js';
 
-const Question = (props) => {
-  console.log('qa', props.question)
+const Question = ({question, answerIt, toggleAnswerIt}) => {
   return (
     <div className="questionsBox">
-      <div className="question">Q:{props.question.question}</div>
-      <div className="qUser">user: {props.question.qUser}</div>
+      <div className="question">Q: {question.question}</div>
+      <div className="qUser">{question.qUser}- 1 week ago</div>
       <div className="answerBox">
         <div className="answerA">A:
-          <div className="answer">{props.question.answer}</div>
+          <div className="answer">{question.answer}</div>
         </div>
-        <div className="aUser">user: {props.question.aUser}
+        <div className="aUser">{question.aUser}- 5 days ago
           <div className="helpful">
             <a href="#" className="helpNotReport">Helpful (0)</a>
             <a href="#" className="helpNotReport">Not helpful (0)</a>
             <a href="#" className="helpNotReport">Report</a>
           </div>
+        </div>
+        <div className="answerIt">
+          <Answer
+          answerIt={answerIt}
+          toggleAnswerIt={toggleAnswerIt}/>
         </div>
       </div>
     </div>

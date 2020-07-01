@@ -3,23 +3,27 @@ import Details from './Details.js';
 import Shipping from './Shipping.js';
 import QA from './Q&A.js';
 
-const CurrentTab = (props) => {
-  if (props.current === 'Details') {
+const CurrentTab = ({tabSelected, cat, questions, askQuestion, toggleAskQuestion, answerIt, toggleAnswerIt}) => {
+  if (tabSelected === 'Details') {
     return (
-      <Details cat={props.cat} />
+      <Details cat={cat} />
     )
   }
-  if (props.current === 'Shipping') {
+  if (tabSelected === 'Shipping') {
     return (
-      <Shipping cat={props.cat} />
+      <Shipping />
     )
   }
-  if (props.current === 'QA') {
+  if (tabSelected === 'QA') {
     return (
-      <QA questions={props.questions} />
+      <QA
+      questions={questions}
+      askQuestion={askQuestion}
+      toggleAskQuestion={toggleAskQuestion}
+      answerIt={answerIt}
+      toggleAnswerIt={toggleAnswerIt}/>
     )
   }
-
 }
 
 export default CurrentTab;
