@@ -17,6 +17,7 @@ const CurrentTab = ({tabSelected, cat, questions, askQuestion, toggleAskQuestion
   if (tabSelected === 'QA') {
     return (
       <QA
+      catID={cat.cID}
       questions={questions}
       askQuestion={askQuestion}
       toggleAskQuestion={toggleAskQuestion}

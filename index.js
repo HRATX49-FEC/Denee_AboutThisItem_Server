@@ -35,15 +35,35 @@ app.get('/about/questions', (req, res) => {
   });
 });
 
-app.get('/about/answers', (req, res) => {
-  // console.log('get', req.query.catName)
-  db.getAnswers(req.query.catName, (error, results) => {
+// app.get('/about/answers', (req, res) => {
+//   // console.log('get', req.query.catName)
+//   db.getAnswers(req.query.catName, (error, results) => {
+//     if (error) {
+//       console.error('error getting query', error);
+//       res.send(error, null);
+//     } else {
+//       // console.log('query results:', results);
+//       res.status(200).send(results);
+//     }
+//   });
+// });
+
+app.post('/about/question', (req, res) => {
+  db.addQuestion(question, (error, results) => {
     if (error) {
-      console.error('error getting query', error);
       res.send(error, null);
     } else {
-      // console.log('query results:', results);
-      res.status(200).send(results);
+      res.status(200).send('sent');
+    }
+  });
+});
+
+app.post('/about/answer', (req, res) => {
+  db.addAnswer(answer, (error, results) => {
+    if (error) {
+      res.send(error, null);
+    } else {
+      res.status(200).send('sent');
     }
   });
 });

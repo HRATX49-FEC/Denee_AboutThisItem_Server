@@ -20,9 +20,12 @@ class About extends React.Component {
     this.getCat = this.getCat.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
     // this.getAnswers = this.getAnswers.bind(this);
+    this.addQuestion = this.addQuestion.bind(this);
+    this.addAnswer = this.addAnswer.bind(this);
     this.toggleTabSelected = this.toggleTabSelected.bind(this);
     this.toggleAskQuestion = this.toggleAskQuestion(this);
     this.toggleAnswerIt = this.toggleAnswerIt(this);
+
   }
 
   componentDidMount() {
@@ -82,10 +85,20 @@ class About extends React.Component {
     this.setState({answerIt: !this.state.answerIt})
   }
 
-  add(input) {
-    Axios.post('/about', {input})
+  addQuestion(input) {
+    Axios.post('/about/question', {question})
       .then(res => {
+        this.getQuestions();
+      })
+      .catch(error => {
+        console.error('Axios post error', error);
+      });
+  }
 
+  addAnswer(input) {
+    Axios.post('/about/answer', {answer})
+      .then(res => {
+        this.getQuestions();
       })
       .catch(error => {
         console.error('Axios post error', error);
@@ -93,7 +106,6 @@ class About extends React.Component {
   }
 
   render() {
-
     return (
       <div className="mainBox">
         <h2 className="heading">About this item</h2>

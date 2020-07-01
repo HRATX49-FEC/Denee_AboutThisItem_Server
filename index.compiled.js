@@ -27,13 +27,43 @@ app.get('/about/cat', function (req, res) {
 });
 app.get('/about/questions', function (req, res) {
   // console.log('get', req.query.catName)
-  db.getQAs(req.query.catName, function (error, results) {
+  db.getQuestions(req.query.catName, function (error, results) {
     if (error) {
       console.error('error getting query', error);
       res.send(error, null);
     } else {
-      console.log('query results:', results);
+      // console.log('query results:', results);
       res.status(200).send(results);
+    }
+  });
+}); // app.get('/about/answers', (req, res) => {
+//   // console.log('get', req.query.catName)
+//   db.getAnswers(req.query.catName, (error, results) => {
+//     if (error) {
+//       console.error('error getting query', error);
+//       res.send(error, null);
+//     } else {
+//       // console.log('query results:', results);
+//       res.status(200).send(results);
+//     }
+//   });
+// });
+
+app.post('/about/question', function (req, res) {
+  db.addQuestion(question, function (error, results) {
+    if (error) {
+      res.send(error, null);
+    } else {
+      res.status(200).send('sent');
+    }
+  });
+});
+app.post('/about/answer', function (req, res) {
+  db.addAnswer(answer, function (error, results) {
+    if (error) {
+      res.send(error, null);
+    } else {
+      res.status(200).send('sent');
     }
   });
 });
