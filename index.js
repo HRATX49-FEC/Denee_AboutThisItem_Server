@@ -2,12 +2,12 @@ const express = require('express');
 const path = require('path');
 const db = require('./database/query.js');
 const app = express();
-// const compression = require('compression');
+const compression = require('compression');
 const PORT = process.env.PORT || 5100;
 
 
 app.use(express.json());
-// app.use(compression());
+app.use(compression());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
