@@ -51,8 +51,11 @@ app.get('/about/questions', (req, res) => {
 // });
 
 app.post('/about/question', (req, res) => {
+  console.log('in /about/question');
   db.addQuestion(req.body.question, (error, results) => {
+    console.log('results', results);
     if (error) {
+      console.error(error);
       res.send(error, null);
     } else {
       res.status(200).send('sent');
