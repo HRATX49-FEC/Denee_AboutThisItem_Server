@@ -2,7 +2,6 @@ import React from 'react';
 import CurrentTab from './CurrentTab.js';
 
 const AboutItem = ({cat, tabSelected, toggleTabSelected, questions, addQuestion, askQuestion, toggleAskQuestion, addAnswer, answerIt, toggleAnswerIt}) => {
-  console.log
   return (
     <div>
       <div className="tabBar">

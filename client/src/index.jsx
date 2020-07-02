@@ -14,17 +14,18 @@ class About extends React.Component {
       questions: [],
       answers: [],
       tabSelected: 'Details',
-      askQuestion: true,
+      askQuestion: false,
       answerIt: false
-    };
+    }
+    
     this.getCat = this.getCat.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
     // this.getAnswers = this.getAnswers.bind(this);
     this.addQuestion = this.addQuestion.bind(this);
     this.addAnswer = this.addAnswer.bind(this);
     this.toggleTabSelected = this.toggleTabSelected.bind(this);
-    this.toggleAskQuestion = this.toggleAskQuestion(this);
-    this.toggleAnswerIt = this.toggleAnswerIt(this);
+    this.toggleAskQuestion = this.toggleAskQuestion.bind(this);
+    this.toggleAnswerIt = this.toggleAnswerIt.bind(this);
 
   }
 
@@ -37,7 +38,6 @@ class About extends React.Component {
       this.getQuestions(e.currentTarget.id);
     });
     $('body').on('submit', '.form', (e) => {
-      // console.log(e.target[0].value);
       let formatted = e.target[0].value.replace(/(^\w|\s\w)(\S*)/g, (_,m1,m2) => m1.toUpperCase()+m2.toLowerCase());
       this.getCat(formatted);
       this.getQuestions(formatted);
@@ -62,7 +62,6 @@ class About extends React.Component {
   getQuestions(catName) {
     Axios.get('/about/questions', {params: {catName}})
       .then((response) => {
-      // console.log('questions', response.data);
         window.questions = response.data.length;
         this.setState({questions: response.data});
       })
@@ -97,12 +96,10 @@ class About extends React.Component {
   }
 
   addQuestion(question) {
-    console.log('axios post question', question)
     Axios.post('/about/question', {question})
       .then(res => {
-        console.log(res);
+        this.getQuestions(this.state.cat.catName)
       })
-      // .then(this.getQuestions(this.state.cat.catName))
       .catch(error => {
         console.error('Axios post error', error);
       });

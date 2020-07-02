@@ -37,6 +37,7 @@ CREATE TABLE questions (
   catID INT NOT NULL,
   question VARCHAR(255),
   qUser VARCHAR(255),
+  dateAdded VARCHAR(255),
   FOREIGN KEY (catID)
 	  REFERENCES cats(cID)
 );
@@ -46,6 +47,7 @@ CREATE TABLE answers (
   questionID INT NOT NULL,
   answer VARCHAR(255),
   aUser VARCHAR(255),
+  dateAdded VARCHAR(255),
   FOREIGN KEY (questionID)
 	  REFERENCES questions(qID)
 );
@@ -267,7 +269,21 @@ INSERT INTO specifications (catID, size, mouseCount, dogFriend, in_out, itemNum)
 INSERT INTO specifications (catID, size, mouseCount, dogFriend, in_out, itemNum) VALUES (99, 'Medium', 0, 'Yes', 'Outdoor', 55);
 INSERT INTO specifications (catID, size, mouseCount, dogFriend, in_out, itemNum) VALUES (100, 'Medium', 0, 'Yes', 'Outdoor', 55);
 
-INSERT INTO questions (catID, question, qUser) VALUES (9, 'How much does this cat weigh?', 'kittylove20');
-
-INSERT INTO answers (questionID, answer, aUser) VALUES (1, '5 pounds', 'Purrget');
-
+INSERT INTO questions (catID, question, qUser, dateAdded) VALUES (9, 'How much does this cat weigh?', 'kittylove20', '1 month ago');
+INSERT INTO answers (questionID, answer, aUser, dateAdded) VALUES (1, '5 pounds', 'Purrget', '3 weeks ago');
+INSERT INTO questions (catID, question, qUser, dateAdded) VALUES (9, 'What food does this cat eat?', 'kittylove20', '2 weeks ago');
+INSERT INTO questions (catID, question, qUser, dateAdded) VALUES (1, 'is this cat playful?', 'catzzzz08', ' days ago');
+INSERT INTO questions (catID, question, qUser, dateAdded) VALUES (1, 'how old is this cat', 'kittykat25', '3 days go');
+INSERT INTO answers (questionID, answer, aUser, dateAdded) VALUES (4, 'Please refer to the details tab.', 'Purrget', '1 week ago');
+INSERT INTO questions (catID, question, qUser, dateAdded) VALUES (2, 'what color is it?', 'catlove20', '3 days ago');
+INSERT INTO questions (catID, question, qUser, dateAdded) VALUES (3, 'does it like ribbons?', 'kittylove20', '6 days ago');
+INSERT INTO answers (questionID, answer, aUser, dateAdded) VALUES (6, 'Dont all cats like ribbons?', 'catlove20', '1 day ago');
+INSERT INTO questions (catID, question, qUser, dateAdded) VALUES (4, 'What food does this cat eat?', 'user1234', '1 month ago');
+INSERT INTO questions (catID, question, qUser, dateAdded) VALUES (7, 'What food does this cat eat?', 'newcatmom46', '3 weeks ago');
+INSERT INTO answers (questionID, answer, aUser, dateAdded) VALUES (8, 'Any cat food', 'purrgetlove15', '1 week ago');
+INSERT INTO questions (catID, question, qUser, dateAdded) VALUES (12, 'Will this cat live a long time?', 'newcatmom46', '4 months ago');
+INSERT INTO answers (questionID, answer, aUser, dateAdded) VALUES (9, 'I dont know. I bought this as a gift for someone else.', 'catmom90', '1 month ago');
+INSERT INTO questions (catID, question, qUser, dateAdded) VALUES (10, 'will it look the same as the picture?', 'yaycats32', '1 week ago');
+INSERT INTO answers (questionID, answer, aUser, dateAdded) VALUES (10, 'Yes', 'Purrget', '1 week ago');
+INSERT INTO questions (catID, question, qUser, dateAdded) VALUES (11, 'can you add more pictures?', 'yaycats32', '2 days ago');
+INSERT INTO answers (questionID, answer, aUser, dateAdded) VALUES (11, 'No, you can come to the store to view the cat', 'Purrget', '1 day ago');

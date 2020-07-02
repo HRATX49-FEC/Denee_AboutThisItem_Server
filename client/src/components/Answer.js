@@ -23,14 +23,14 @@ const Answer = ({addAnswer, answerIt, toggleAnswerIt}) => {
           <div className="smallGrayText">this name will be displayed with your question</div>
         </div>
         <div className="submitQuesBox">by submitting I agree to the <a href="#">q&a guildelines</a>
-          <button className="largeWhiteButton">cancel</button>
+          <button className="largeWhiteButton" onClick={toggleAnswerIt}>cancel</button>
           <button className="largeRedButton">submit answer</button>
         </div>
       </>
     )
   } else {
     return (
-      <button className="answerItButton" onClick={console.log('answer click')}>Answer it</button>
+      <button className="answerItButton" onClick={toggleAnswerIt}>Answer it</button>
     )
 
   }

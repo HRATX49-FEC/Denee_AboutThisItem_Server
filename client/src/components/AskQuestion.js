@@ -11,22 +11,20 @@ class AskQuestion extends React.Component {
     this.handleChangeQues = this.handleChangeQues.bind(this);
     this.handleChangeUser = this.handleChangeUser.bind(this);
     this.newQuestion = this.newQuestion.bind(this);
-    console.log('props', props)
-  }
+  };
 
   handleChangeQues(event) {
-    console.log(event.target.value);
-    this.setState({question: event.target.value})
-  }
+    this.setState({question: event.target.value});
+  };
 
   handleChangeUser(event) {
-    this.setState({qUser: event.target.value})
-  }
+    this.setState({qUser: event.target.value});
+  };
 
   newQuestion() {
     this.props.addQuestion([this.state.catID, this.state.question, this.state.qUser]);
     this.props.toggleAskQuestion();
-  }
+  };
 
   render() {
     if (this.props.askQuestion) {
@@ -60,10 +58,10 @@ class AskQuestion extends React.Component {
       )
     } else {
       return (
-        <button className="largeRedButton">Ask a question</button>
+        <button className="largeRedButton" onClick={this.props.toggleAskQuestion}>Ask a question</button>
       )
-    }
-  }
+    };
+  };
 
 }
 

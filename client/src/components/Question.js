@@ -1,5 +1,4 @@
 import React from 'react';
-import Answer from './Answer.js';
 
 const Question = ({catID, question, addAnswer, answerIt, toggleAnswerIt}) => {
   return (
@@ -16,13 +15,6 @@ const Question = ({catID, question, addAnswer, answerIt, toggleAnswerIt}) => {
             <a href="#" className="helpNotReport">Not helpful (0)</a>
             <a href="#" className="helpNotReport">Report</a>
           </div>
-        </div>
-        <div className="answerIt">
-          <Answer
-          catID={catID}
-          addAnswer={addAnswer}
-          answerIt={answerIt}
-          toggleAnswerIt={toggleAnswerIt}/>
         </div>
       </div>
     </div>

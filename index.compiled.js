@@ -55,7 +55,8 @@ app.post('/about/question', function (req, res) {
     if (error) {
       res.send(error, null);
     } else {
-      res.status(200).send('sent');
+      // res.status(200).send('sent');
+      db.getQuestions();
     }
   });
 });
