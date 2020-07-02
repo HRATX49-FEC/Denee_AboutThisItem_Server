@@ -1,40 +1,34 @@
 import React from 'react';
+import moment from 'moment';
+import AddAnswer from './AddAnswer';
 
-const Answer = ({addAnswer, answerIt, toggleAnswerIt}) => {
-  if (answerIt) {
+const Answer = ({question, addAnswer, answerIt, toggleAnswerIt}) => {
+
+  if (question.answer === null) {
     return (
-      <>
-        <div className="askQuesForm">your answer
-          <textarea
-            type="text"
-            maxLength='255'
-            rows='4'
-            placeholder="answer"
-            className="quesTextBox">
-          </textarea>
-          <div className="smallGrayText">at least 20 characters</div>
-          <textarea
-            type="text"
-            maxLength='20'
-            rows='1'
-            placeholder='screen name'
-            className="quesTextBox">
-          </textarea>
-          <div className="smallGrayText">this name will be displayed with your question</div>
-        </div>
-        <div className="submitQuesBox">by submitting I agree to the <a href="#">q&a guildelines</a>
-          <button className="largeWhiteButton" onClick={toggleAnswerIt}>cancel</button>
-          <button className="largeRedButton">submit answer</button>
-        </div>
-      </>
+      <AddAnswer
+      questionID={question.qID}
+        addAnswer={addAnswer}
+        answerIt={answerIt}
+        toggleAnswerIt={toggleAnswerIt}
+      />
     )
   } else {
     return (
-      <button className="answerItButton" onClick={toggleAnswerIt}>Answer it</button>
+      <div className="answerBox">
+        <div className="answerA">A:
+          <div className="answer">{question.answer}</div>
+        </div>
+        <div className="aUser">{question.aUser}- {moment(question.anwDateAdded).startOf('minute').fromNow()}
+          <div className="helpful">
+            <a href="#" className="helpNotReport">Helpful (0)</a>
+            <a href="#" className="helpNotReport">Not helpful (0)</a>
+            <a href="#" className="helpNotReport">Report</a>
+          </div>
+        </div>
+      </div>
     )
-
   }
-
 }
 
 export default Answer;

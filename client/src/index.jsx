@@ -13,19 +13,17 @@ class About extends React.Component {
       cat: [],
       questions: [],
       answers: [],
+      currentCat: '',
       tabSelected: 'Details',
-      askQuestion: false,
-      answerIt: false
+
     }
-    
+
     this.getCat = this.getCat.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
     // this.getAnswers = this.getAnswers.bind(this);
     this.addQuestion = this.addQuestion.bind(this);
     this.addAnswer = this.addAnswer.bind(this);
     this.toggleTabSelected = this.toggleTabSelected.bind(this);
-    this.toggleAskQuestion = this.toggleAskQuestion.bind(this);
-    this.toggleAnswerIt = this.toggleAnswerIt.bind(this);
 
   }
 
@@ -33,6 +31,8 @@ class About extends React.Component {
     this.getCat('Luna');
     this.getQuestions('Luna');
     // this.getAnswers('Luna');
+
+    // Event listeners for entire page on search and click
     $('body').on('click', '.catLink', (e) => {
       this.getCat(e.currentTarget.id);
       this.getQuestions(e.currentTarget.id);
@@ -48,21 +48,26 @@ class About extends React.Component {
     })
   }
 
-
+// Get request to database for item details
   getCat(catName) {
     Axios.get('/about/cat', {params: {catName}})
       .then((response) => {
-        this.setState({cat: response.data[0]});
+        this.setState({cat: response.data[0], currentCat: response.data[0]['catName']});
       })
       .catch(error => {
         console.error('Axios get Cat error', error);
       });
   }
 
+// Get request to database for questions and answers
   getQuestions(catName) {
     Axios.get('/about/questions', {params: {catName}})
       .then((response) => {
-        window.questions = response.data.length;
+        if (response.data[0]['qID'] === null) {
+          window.questions = 0;
+        } else {
+          window.questions = response.data.length;
+        }
         this.setState({questions: response.data});
       })
       .catch(error => {
@@ -70,6 +75,9 @@ class About extends React.Component {
       })
   }
 
+
+// Get request to database for all answers to 1 question
+// have not impleted the ability to post multiple answers to 1 question
   // getAnswers(catName) {
   //   Axios.get('/about/answers', {params: {catName}})
   //     .then((response) => {
@@ -81,37 +89,35 @@ class About extends React.Component {
   //     })
   // }
 
-  toggleAskQuestion() {
-    this.setState({askQuestion: !this.state.askQuestion})
-  }
 
+// Toggle between header tabs of Details, Shipping&Returns, Q&A
   toggleTabSelected(event) {
     this.setState({
       tabSelected: event.target.name
     })
   }
 
-  toggleAnswerIt() {
-    this.setState({answerIt: !this.state.answerIt})
-  }
 
+// Post request to add new question to database with nested get request to update page with new question
   addQuestion(question) {
     Axios.post('/about/question', {question})
       .then(res => {
-        this.getQuestions(this.state.cat.catName)
+        this.getQuestions(this.state.currentCat)
       })
       .catch(error => {
-        console.error('Axios post error', error);
+        console.error('Axios question post error', error);
       });
   }
 
-  addAnswer(input) {
+
+// Post request to add answer to database with nested get request to update question with answer
+  addAnswer(answer) {
     Axios.post('/about/answer', {answer})
       .then(res => {
-        console.log(res);
+        this.getQuestions(this.state.currentCat)
       })
       .catch(error => {
-        console.error('Axios post error', error);
+        console.error('Axios answer post error', error);
       });
   }
 
@@ -121,16 +127,12 @@ class About extends React.Component {
         <h2 className="heading">About this item</h2>
         <div>
           <AboutItem
-          cat={this.state.cat}
-          tabSelected={this.state.tabSelected}
-          toggleTabSelected={this.toggleTabSelected}
-          questions={this.state.questions}
-          addQuestion={this.addQuestion}
-          askQuestion={this.state.askQuestion}
-          toggleAskQuestion={this.toggleAskQuestion}
-          addAnswer={this.addAnswer}
-          answerIt={this.state.answerIt}
-          toggleAnswerIt={this.toggleAnswerIt}
+            cat={this.state.cat}
+            tabSelected={this.state.tabSelected}
+            toggleTabSelected={this.toggleTabSelected}
+            questions={this.state.questions}
+            addQuestion={this.addQuestion}
+            addAnswer={this.addAnswer}
           />
         </div>
       </div>

@@ -1,7 +1,8 @@
 import React from 'react';
 import CurrentTab from './CurrentTab.js';
 
-const AboutItem = ({cat, tabSelected, toggleTabSelected, questions, addQuestion, askQuestion, toggleAskQuestion, addAnswer, answerIt, toggleAnswerIt}) => {
+const AboutItem = ({cat, tabSelected, toggleTabSelected, questions, addQuestion, addAnswer}) => {
+// Renders the tab bar heading and toggles between tabs
   return (
     <div>
       <div className="tabBar">
@@ -19,20 +20,17 @@ const AboutItem = ({cat, tabSelected, toggleTabSelected, questions, addQuestion,
           <li
             className={tabSelected === 'QA' ? "tabHeaderSelected" : "tabHeader"}
             onClick={(event) => toggleTabSelected(event)}>
-            <a name='QA' className="tabHeader">Q&A{`(${questions.length})`}</a>
+            <a name='QA' className="tabHeader">Q&A{`(${window.questions})`}</a>
           </li>
         </ul>
       </div>
         <CurrentTab
-        tabSelected={tabSelected}
-        cat={cat}
-        questions={questions}
-        addQuestion={addQuestion}
-        askQuestion={askQuestion}
-        toggleAskQuestion={toggleAskQuestion}
-        addAnswer={addAnswer}
-        answerIt={answerIt}
-        toggleAnswerIt={toggleAnswerIt}/>
+          tabSelected={tabSelected}
+          cat={cat}
+          questions={questions}
+          addQuestion={addQuestion}
+          addAnswer={addAnswer}
+        />
     </div>
   )
 

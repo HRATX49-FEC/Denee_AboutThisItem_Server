@@ -1,20 +1,32 @@
 import React from 'react';
+import moment from 'moment';
+
 
 class AskQuestion extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       question: '',
       qUser: '',
-      catID: this.props.catID
-    };
+      catID: this.props.catID,
+      dateQuesSubmitted: '',
+      askQuestion: false
+    }
+
+    this.toggleAskQuestion = this.toggleAskQuestion.bind(this);
     this.handleChangeQues = this.handleChangeQues.bind(this);
     this.handleChangeUser = this.handleChangeUser.bind(this);
     this.newQuestion = this.newQuestion.bind(this);
+
   };
 
+  toggleAskQuestion() {
+    this.setState({askQuestion: !this.state.askQuestion})
+  }
+
   handleChangeQues(event) {
-    this.setState({question: event.target.value});
+    this.setState({question: event.target.value, dateQuesSubmitted: moment()});
   };
 
   handleChangeUser(event) {
@@ -22,12 +34,12 @@ class AskQuestion extends React.Component {
   };
 
   newQuestion() {
-    this.props.addQuestion([this.state.catID, this.state.question, this.state.qUser]);
-    this.props.toggleAskQuestion();
+    this.props.addQuestion([this.state.catID, this.state.question, this.state.qUser, this.state.dateQuesSubmitted]);
+    this.toggleAskQuestion();
   };
 
   render() {
-    if (this.props.askQuestion) {
+    if (this.state.askQuestion) {
       return (
         <>
           <div className="askQuesForm">Your question
@@ -51,14 +63,14 @@ class AskQuestion extends React.Component {
             <div className="smallGrayText">this name will be displayed with your question</div>
           </div>
           <div className="submitQuesBox">by submitting I agree to the <a href="#">q&a guildelines</a>
-            <button className="largeWhiteButton" onClick={this.props.toggleAskQuestion}>cancel</button>
+            <button className="largeWhiteButton" onClick={this.toggleAskQuestion}>cancel</button>
             <button className="largeRedButton" onClick={this.newQuestion}>submit question</button>
           </div>
         </>
       )
     } else {
       return (
-        <button className="largeRedButton" onClick={this.props.toggleAskQuestion}>Ask a question</button>
+        <button className="largeRedButton" onClick={this.toggleAskQuestion}>Ask a question</button>
       )
     };
   };

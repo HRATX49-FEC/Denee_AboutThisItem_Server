@@ -6,7 +6,7 @@ const connection = mysql.createConnection(mysqlConfig);
 const getCats = function(cat, callback) {
   connection.query('select cID, catName, age, livesLeft, sex, size, dogFriend, in_out, itemNum, category from cats c inner join specifications s on (s.catID=cID) inner join categories ct on (ct.ID=c.categoryID) where c.catName=(?)', cat, function(error, results) {
     if (error) {
-      console.log('error from sql db', error);
+      console.log('error from getCats sql', error);
       callback(error, null);
     } else {
       // console.log('got the db req cat', results);
@@ -16,9 +16,10 @@ const getCats = function(cat, callback) {
 };
 
 const getQuestions = function(cat, callback) {
-  connection.query('select cID, qID, question, qUser, answer, aUser from cats c inner join questions q on (q.catID=cID) inner join answers a on (a.questionID=qID) where c.catName=(?)', cat, function(error, results) {
+
+  connection.query('select cID, qID, question, dateAdded, qUser, answer, aUser, anwDateAdded from cats c left join questions q on (q.catID=cID) left join answers a on (a.questionID=qID) where c.catName=(?)', cat, function(error, results) {
     if (error) {
-      console.log('error from sql db', error);
+      console.log('error from getQuestions sql', error);
       callback(error, null);
     } else {
       // console.log('got the db req QAs', results);
@@ -28,9 +29,9 @@ const getQuestions = function(cat, callback) {
 };
 
 const getAnswers = function(cat, callback) {
-  connection.query('select cID, aID, qID, answer, aUser from cats c inner join questions q on (q.catID=cID) inner join answers a on (a.questionID=qID) where c.catName=(?)', cat, function(error, results) {
+  connection.query('select cID, aID, qID, answer, aUser from cats c left join questions q on (q.catID=cID) left join answers a on (a.questionID=qID) where c.catName=(?)', cat, function(error, results) {
     if (error) {
-      console.log('error from sql db', error);
+      console.log('error from getAnswers sql', error);
       callback(error, null);
     } else {
       // console.log('got the db req QAs', results);
@@ -40,8 +41,9 @@ const getAnswers = function(cat, callback) {
 };
 
 const addQuestion = function(question, callback) {
-  connection.query('insert into questions (catID, question, qUser) VALUES (?, ?, ?)', question, function(error, results) {
+  connection.query('insert into questions (catID, question, qUser, dateAdded) VALUES (?, ?, ?, ?)', question, function(error, results) {
     if (error) {
+      console.log('error addQuestion sql', error);
       callback(error, null);
     } else {
       callback(null, results);
@@ -50,8 +52,9 @@ const addQuestion = function(question, callback) {
 };
 
 const addAnswer = function(answer, callback) {
-  connection.query('insert into answers (questionID, answer, aUser) VALUES (?, ?, ?)', answer, function(error, results) {
+  connection.query('insert into answers (questionID, answer, aUser, anwDateAdded) VALUES (?, ?, ?, ?)', answer, function(error, results) {
     if (error) {
+      console.log('error addAnswer sql', error);
       callback(error, null);
     } else {
       callback(null, results);

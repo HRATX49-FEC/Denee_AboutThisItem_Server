@@ -2,9 +2,12 @@ const express = require('express');
 const path = require('path');
 const db = require('./database/query.js');
 const app = express();
+const compression = require('compression');
 const PORT = process.env.PORT || 5100;
 
+
 app.use(express.json());
+app.use(compression());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
@@ -23,7 +26,6 @@ app.get('/about/cat', (req, res) => {
 });
 
 app.get('/about/questions', (req, res) => {
-  // console.log('get', req.query.catName)
   db.getQuestions(req.query.catName, (error, results) => {
     if (error) {
       console.error('error getting query', error);
@@ -49,19 +51,17 @@ app.get('/about/questions', (req, res) => {
 // });
 
 app.post('/about/question', (req, res) => {
-  // console.log(req.body.question)
   db.addQuestion(req.body.question, (error, results) => {
     if (error) {
       res.send(error, null);
     } else {
-      // res.status(200).send('sent');
-      db.getQuestions()
+      res.status(200).send('sent');
     }
   });
 });
 
 app.post('/about/answer', (req, res) => {
-  db.addAnswer(answer, (error, results) => {
+  db.addAnswer(req.body.answer, (error, results) => {
     if (error) {
       res.send(error, null);
     } else {

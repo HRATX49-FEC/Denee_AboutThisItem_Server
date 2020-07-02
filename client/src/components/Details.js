@@ -1,6 +1,8 @@
 import React from 'react';
 
 const Details = ({cat}) => {
+
+// Item Details tab- Highlights, Specifications, Description
   return (
     <>
       <div className="innerMargins">
