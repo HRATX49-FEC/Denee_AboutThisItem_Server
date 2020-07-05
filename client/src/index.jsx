@@ -52,7 +52,7 @@ class About extends React.Component {
   getCat(catName) {
     Axios.get('/about/cat', {params: {catName}})
       .then((response) => {
-        this.setState({cat: response.data[0], currentCat: response.data[0]['catName']});
+        this.setState({cat: response.data[0], currentCat: response.data[0]['catName'], tabSelected: 'Details'});
       })
       .catch(error => {
         console.error('Axios get Cat error', error);
