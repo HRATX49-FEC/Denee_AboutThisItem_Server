@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 const Shipping = () => {
   return (
@@ -7,7 +8,7 @@ const Shipping = () => {
         <div className="shippingHeader">
           Shipping options
           <p className="shippingDetails">
-            Get it by Wed, July 15 with free 2-day shipping
+            Get it by {moment().add(2, 'days').calendar()} with free 2-day shipping
           </p>
         </div>
         <div className="shippingHeader">
