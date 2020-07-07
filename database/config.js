@@ -4,3 +4,4 @@ module.exports = {
   password: process.env.RDS_PASSWORD || 'maddy20bo',
   database: 'purrget'
 };
+

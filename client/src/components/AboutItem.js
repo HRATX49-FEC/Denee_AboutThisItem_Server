@@ -1,29 +1,36 @@
 import React from 'react';
 import CurrentTab from './CurrentTab.js';
 
-const AboutItem = (props) => {
+const AboutItem = ({cat, tabSelected, toggleTabSelected, questions, addQuestion, addAnswer}) => {
+// Renders the tab bar heading and toggles between tabs
   return (
     <div>
       <div className="tabBar">
         <ul className="tabList">
           <li
-            className={props.tabSelected === 'Details' ? "tabHeaderSelected" : "tabHeader"}
-            onClick={(event) => props.handleChange(event)}>
+            className={tabSelected === 'Details' ? "tabHeaderSelected" : "tabHeader"}
+            onClick={(event) => toggleTabSelected(event)}>
             <a name='Details' className="tabHeader">Details</a>
           </li>
           <li
-            className={props.tabSelected === 'Shipping' ? "tabHeaderSelected" : "tabHeader"}
-            onClick={(event) => props.handleChange(event)}>
+            className={tabSelected === 'Shipping' ? "tabHeaderSelected" : "tabHeader"}
+            onClick={(event) => toggleTabSelected(event)}>
             <a name='Shipping' className="tabHeader">Shipping & Returns</a>
           </li>
           <li
-            className={props.tabSelected === 'QA' ? "tabHeaderSelected" : "tabHeader"}
-            onClick={(event) => props.handleChange(event)}>
-            <a name='QA' className="tabHeader">Q&A</a>
+            className={tabSelected === 'QA' ? "tabHeaderSelected" : "tabHeader"}
+            onClick={(event) => toggleTabSelected(event)}>
+            <a name='QA' className="tabHeader">Q&A{`(${window.questions})`}</a>
           </li>
         </ul>
       </div>
-        <CurrentTab current={props.tabSelected} cat={props.cat} />
+        <CurrentTab
+          tabSelected={tabSelected}
+          cat={cat}
+          questions={questions}
+          addQuestion={addQuestion}
+          addAnswer={addAnswer}
+        />
     </div>
   )
 
